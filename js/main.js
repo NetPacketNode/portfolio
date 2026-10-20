@@ -216,7 +216,7 @@
           <div class="tags">${w.stack.map(s => `<span class="tag">${s}</span>`).join('')}</div>
           <div class="work__actions">
             <button class="work__btn work__btn--primary" type="button">${T[lang].open} →</button>
-            ${(LINKS[w.id] || []).map(l => `<a class="work__btn" href="${l.href || '#'}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${l[lang]} ↗</a>`).join('')}
+            ${(LINKS[w.id] || []).map(l => `<a class="work__btn" href="${l.href || '#'}"${/^https?:/.test(l.href || '') ? ' target="_blank" rel="noopener noreferrer"' : ''} onclick="event.stopPropagation()">${l[lang]} ↗</a>`).join('')}
           </div>
         </div>`;
       el.style.transitionDelay = (i % 3) * 110 + 'ms';
@@ -278,8 +278,7 @@
       const a = document.createElement('a');
       a.className = 'work__btn';
       a.href = l.href || '#';
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
+      if (/^https?:/.test(l.href || '')) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
       a.textContent = l[lang] + ' ↗';
       actions.appendChild(a);
     });
