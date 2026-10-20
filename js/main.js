@@ -102,7 +102,7 @@
   ];
 
   const LINKS = {
-    cyberscope: [{ ru: 'Инструкция', en: 'Guide', href: 'cyberscope.html' }, { ru: 'Код', en: 'Code', href: '#' }],
+    cyberscope: [{ ru: 'Инструкция', en: 'Guide', href: 'cyberscope.html' }, { ru: 'Код', en: 'Code', href: 'https://github.com/NetPacketNode/portfolio' }],
     vulnhunter: [{ ru: 'Код', en: 'Code' }, { ru: 'Райтап', en: 'Writeup' }],
     shadowpass: [{ ru: 'Код', en: 'Code' }, { ru: 'Демо', en: 'Demo' }],
     adlab: [{ ru: 'Райтап', en: 'Writeup' }],
