@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06070c">
+<meta name="description" content="NetPacketNode — пентестер и исследователь уязвимостей. Инструменты, CTF, разведка и red team.">
+<title>NetPacketNode · Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>setTimeout(function(){var p=document.getElementById('preloader');if(p)p.classList.add('done');document.documentElement.classList.add('ready')},3500)</script>
+</head>
+<body>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__word"><span>N</span><span>P</span><span>N</span></div>
+  <div class="preloader__bar"><i id="preloaderBar"></i></div>
+  <div class="preloader__meta"><span id="preloaderStatus">boot</span><span id="preloaderNum">0%</span></div>
+</div>
+
+<canvas class="bg-canvas" id="bg" aria-hidden="true"></canvas>
+<div class="bg-aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="progress" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="logo" href="#top" aria-label="NetPacketNode — на главную">
+      <span class="logo__mark">N</span>
+      <span class="logo__text">NetPacket<em>Node</em></span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="Навигация">
+      <a href="#about" data-i18n="nav.about">Обо мне</a>
+      <a href="#works" data-i18n="nav.works">Работы</a>
+      <a href="#stack" data-i18n="nav.stack">Стек</a>
+      <a href="#telemetry" data-i18n="nav.telemetry">Телеметрия</a>
+      <a href="#path" data-i18n="nav.path">Путь</a>
+      <a href="#achievements" data-i18n="nav.ach">Достижения</a>
+      <a href="#console" data-i18n="nav.console">Консоль</a>
+      <a href="#contact" data-i18n="nav.contact">Связь</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="chip" id="langBtn" type="button">EN</button>
+      <button class="theme-toggle" id="themeBtn" type="button" aria-label="Тема">
+        <span class="theme-toggle__thumb"></span>
+      </button>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero__text">
+    <span class="eyebrow"><i></i><span data-i18n="hero.eyebrow">open for red team · 2026</span></span>
+    <h1 class="hero__title">
+      <span data-i18n="hero.hi">Привет, я</span>
+      <span class="grad">NetPacketNode</span>
+    </h1>
+    <p class="role"><b id="typed"></b><span class="caret"></span></p>
+    <p class="lead" data-i18n="hero.lead">Пентесты, исследование уязвимостей и red team. Ломаю системы, чтобы их починили, и пишу инструменты, которыми это делается.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary magnetic" href="#works"><span data-i18n="hero.btn1">Смотреть работы</span> →</a>
+      <a class="btn magnetic" href="#contact" data-i18n="hero.btn2">Написать</a>
+    </div>
+    <div class="hero__mini">
+      <div><strong data-count="520">0</strong><small data-i18n="mini.nmap">Nmap-сканов</small></div>
+      <div><strong data-count="134">0</strong><small data-i18n="mini.sqli">SQLi найдено</small></div>
+      <div><strong data-count="2480">0</strong><small data-i18n="mini.cve">CVE разобрано</small></div>
+    </div>
+  </div>
+
+  <div class="hero__media">
+    <div class="avatar" id="avatar">
+      <div class="avatar__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="avatar__frame">
+        <img src="assets/avatar.jpg" alt="Фото NetPacketNode" width="640" height="800" loading="eager">
+        <div class="avatar__fallback" aria-hidden="true">NPN</div>
+        <div class="avatar__scan"></div>
+      </div>
+      <span class="badge badge--1">Nmap</span>
+      <span class="badge badge--2">Burp</span>
+      <span class="badge badge--3">Python</span>
+      <span class="badge badge--4">CTF</span>
+    </div>
+    <div class="hud-float" aria-hidden="true">
+      <small data-i18n="hud.pps">пакетов/сек</small>
+      <strong id="pps">0</strong>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+<section class="section" id="about">
+  <header class="head reveal">
+    <span class="idx">01</span>
+    <h2 data-i18n="about.t">Обо мне</h2>
+    <p data-i18n="about.sub">Люблю понимать, как всё устроено изнутри</p>
+  </header>
+  <div class="about">
+    <div class="about__text reveal">
+      <p data-i18n="about.p1">Энтузиаст кибербезопасности. Больше всего интересуют веб-уязвимости, сетевые атаки и эксплуатация.</p>
+      <p data-i18n="about.p2">Участвую в CTF, пишу райтапы и инструменты разведки. Верю, что безопасность строится на понимании атаки.</p>
+      <ul class="about__list">
+        <li><b data-i18n="about.l1t">Этика прежде всего.</b> <span data-i18n="about.l1">Тестирую только то, на что есть разрешение.</span></li>
+        <li><b data-i18n="about.l2t">Автоматизация.</b> <span data-i18n="about.l2">Скрипты там, где руками долго.</span></li>
+        <li><b data-i18n="about.l3t">Понятные отчёты.</b> <span data-i18n="about.l3">Находка без воспроизведения ничего не стоит.</span></li>
+      </ul>
+    </div>
+    <div class="card term reveal">
+      <div class="term__bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>netpacketnode@kali ~ tail -f hunt.log</span></div>
+      <div class="term__body" id="termLog"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="works">
+  <header class="head reveal">
+    <span class="idx">02</span>
+    <h2 data-i18n="works.t">Работы</h2>
+    <p data-i18n="works.sub">Инструменты и проекты, которые реально запускаются</p>
+  </header>
+
+  <div class="filters reveal" id="filters">
+    <button class="filter is-active" data-filter="all" type="button" data-i18n="flt.all">Все</button>
+    <button class="filter" data-filter="python" type="button">Python</button>
+    <button class="filter" data-filter="web" type="button">Web</button>
+    <button class="filter" data-filter="net" type="button" data-i18n="flt.net">Сеть</button>
+  </div>
+
+  <div class="works" id="worksGrid"></div>
+</section>
+
+<section class="section" id="stack">
+  <header class="head reveal">
+    <span class="idx">03</span>
+    <h2 data-i18n="stack.t">Стек</h2>
+    <p data-i18n="stack.sub">Инструменты, с которыми работаю каждый день</p>
+  </header>
+  <div class="stack">
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="stack.c1">// Пентест</h3>
+      <div class="skill"><div class="skill__top"><span>Burp Suite</span><span>85%</span></div><div class="skill__track"><i data-w="85"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>OWASP Top 10</span><span>90%</span></div><div class="skill__track"><i data-w="90"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Metasploit</span><span>75%</span></div><div class="skill__track"><i data-w="75"></i></div></div>
+    </div>
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="stack.c2">// Сети</h3>
+      <div class="skill"><div class="skill__top"><span>Nmap</span><span>90%</span></div><div class="skill__track"><i data-w="90"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Wireshark</span><span>85%</span></div><div class="skill__track"><i data-w="85"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Tcpdump</span><span>70%</span></div><div class="skill__track"><i data-w="70"></i></div></div>
+    </div>
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="stack.c3">// Программирование</h3>
+      <div class="skill"><div class="skill__top"><span>Python</span><span>88%</span></div><div class="skill__track"><i data-w="88"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Bash</span><span>80%</span></div><div class="skill__track"><i data-w="80"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>JavaScript</span><span>65%</span></div><div class="skill__track"><i data-w="65"></i></div></div>
+    </div>
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="stack.c4">// Эксплойты и RE</h3>
+      <div class="skill"><div class="skill__top"><span>Ghidra</span><span>70%</span></div><div class="skill__track"><i data-w="70"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Buffer Overflow</span><span>65%</span></div><div class="skill__track"><i data-w="65"></i></div></div>
+      <div class="skill"><div class="skill__top"><span>Fuzzing</span><span>60%</span></div><div class="skill__track"><i data-w="60"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="telemetry">
+  <header class="head reveal">
+    <span class="idx">04</span>
+    <h2 data-i18n="tel.t">Телеметрия</h2>
+    <p data-i18n="tel.sub">Моя активность в киберпространстве</p>
+  </header>
+  <div class="telemetry">
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="tel.tools">Инструменты</h3>
+      <table>
+        <thead><tr><th data-i18n="tel.tool">Инструмент</th><th data-i18n="tel.runs">Запусков</th><th data-i18n="tel.lvl">Уровень</th></tr></thead>
+        <tbody>
+          <tr><td>Metasploit</td><td>450+</td><td>4/5</td></tr>
+          <tr><td>Burp Suite</td><td>380+</td><td>4/5</td></tr>
+          <tr><td>Nmap</td><td>520+</td><td>5/5</td></tr>
+          <tr><td>Wireshark</td><td>290+</td><td>4/5</td></tr>
+          <tr><td>John the Ripper</td><td>180+</td><td>3/5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card pad reveal">
+      <h3 class="card__h" data-i18n="tel.cats">Категории</h3>
+      <table>
+        <thead><tr><th data-i18n="tel.cat">Категория</th><th data-i18n="tel.count">Кол-во</th><th data-i18n="tel.rate">Успех</th></tr></thead>
+        <tbody>
+          <tr><td>XSS</td><td>89</td><td>92%</td></tr>
+          <tr><td>SQL Injection</td><td>134</td><td>95%</td></tr>
+          <tr><td>Privilege Escalation</td><td>67</td><td>88%</td></tr>
+          <tr><td>Password Cracking</td><td>245</td><td>91%</td></tr>
+          <tr><td>Network Pivoting</td><td>78</td><td>86%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card pad feed reveal">
+      <div class="feed__head"><h3 class="card__h" data-i18n="tel.feed">Live threat feed</h3><span class="live"><i></i>LIVE</span></div>
+      <div class="feed__list" id="feed"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="path">
+  <header class="head reveal">
+    <span class="idx">05</span>
+    <h2 data-i18n="path.t">Путь</h2>
+    <p data-i18n="path.sub">Как я пришёл к безопасности</p>
+  </header>
+  <ol class="timeline">
+    <li class="reveal"><span class="tl__y" data-i18n="path.1y">2022</span><div class="card"><h3 data-i18n="path.1t">Первые шаги</h3><p data-i18n="path.1">Разобрал сеть дома: Wireshark, ping, первые пакеты.</p></div></li>
+    <li class="reveal"><span class="tl__y" data-i18n="path.2y">2023</span><div class="card"><h3 data-i18n="path.2t">CTF и веб</h3><p data-i18n="path.2">Первые CTF, OWASP Top 10, разбор чужих райтапов по вечерам.</p></div></li>
+    <li class="reveal"><span class="tl__y" data-i18n="path.3y">2024</span><div class="card"><h3 data-i18n="path.3t">Инструменты</h3><p data-i18n="path.3">Свои сканеры и автоматизация разведки на Python.</p></div></li>
+    <li class="reveal"><span class="tl__y" data-i18n="path.4y">2026</span><div class="card"><h3 data-i18n="path.4t">Red team</h3><p data-i18n="path.4">Пентесты в лабораториях, разбор CVE и отчёты, понятные не только технарям.</p></div></li>
+  </ol>
+</section>
+
+<section class="section" id="achievements">
+  <header class="head reveal">
+    <span class="idx">06</span>
+    <h2 data-i18n="ach.t">Достижения</h2>
+    <p data-i18n="ach.sub">Цифры за время практики</p>
+  </header>
+  <div class="ach">
+    <div class="card ach__item reveal"><strong data-count="180">0</strong><small data-i18n="ach.1">CTF-задач решено</small></div>
+    <div class="card ach__item reveal"><strong data-count="42">0</strong><small data-i18n="ach.2">райтапов опубликовано</small></div>
+    <div class="card ach__item reveal"><strong data-count="37">0</strong><small data-i18n="ach.3">уязвимостей найдено</small></div>
+    <div class="card ach__item reveal"><strong data-count="2400">0</strong><small data-i18n="ach.4">часов практики</small></div>
+  </div>
+</section>
+
+<section class="section" id="console">
+  <header class="head reveal">
+    <span class="idx">07</span>
+    <h2 data-i18n="con.t">Консоль</h2>
+    <p data-i18n="con.sub">Попробуйте команду help</p>
+  </header>
+  <div class="card console reveal">
+    <div class="term__bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>netpacketnode@web ~ bash</span></div>
+    <div class="console__out" id="conOut" aria-live="polite"></div>
+    <form class="console__in" id="conForm" autocomplete="off">
+      <span>$</span>
+      <input id="conIn" type="text" spellcheck="false" aria-label="Команда" placeholder="help">
+    </form>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <header class="head reveal">
+    <span class="idx">08</span>
+    <h2 data-i18n="cn.t">Связь</h2>
+    <p data-i18n="cn.sub">Давай поговорим о безопасности</p>
+  </header>
+  <div class="contact">
+    <form class="card pad form reveal" id="contactForm">
+      <label><span data-i18n="cn.name">Имя</span><input name="name" required maxlength="80" autocomplete="name"></label>
+      <label><span>Email</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+      <label><span data-i18n="cn.msg">Сообщение</span><textarea name="message" rows="5" required maxlength="2000"></textarea></label>
+      <button class="btn btn--primary" type="submit" data-i18n="cn.send">Отправить</button>
+    </form>
+    <div class="contact__links reveal">
+      <a class="card link" href="mailto:netpacketnode@example.com"><b>Email</b><span>netpacketnode@example.com</span></a>
+      <a class="card link" href="#" target="_blank" rel="noopener noreferrer"><b>GitHub</b><span>@netpacketnode</span></a>
+      <a class="card link" href="#" target="_blank" rel="noopener noreferrer"><b>X / Twitter</b><span>@netpacketnode</span></a>
+      <a class="card link" href="#" target="_blank" rel="noopener noreferrer"><b>RootMe</b><span>profile</span></a>
+      <a class="card link" href="#" target="_blank" rel="noopener noreferrer"><b>HackTheBox</b><span>profile</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span data-i18n="ft">© 2026 NetPacketNode · Stay curious, stay ethical</span>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="Наверх">↑</button>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="card modal__box">
+    <button class="modal__x" id="modalX" type="button" aria-label="Закрыть">×</button>
+    <div class="modal__media" id="mMedia"></div>
+    <h3 id="mTitle"></h3>
+    <div id="mBody"></div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
