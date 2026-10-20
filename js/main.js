@@ -221,7 +221,7 @@
         </div>`;
       el.style.transitionDelay = (i % 3) * 110 + 'ms';
       splitChars(el.querySelector('h3'));
-      el.addEventListener('click', () => openModal(w));
+      el.addEventListener('click', e => { if (!e.target.closest('a')) openModal(w); });
       el.addEventListener('mousemove', e => tilt(el, e));
       el.addEventListener('mouseleave', () => { el.style.transform = ''; });
       grid.appendChild(el);
